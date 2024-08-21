@@ -6,5 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/home/kpit/Desktop/cmake_tutorials/module2/division.cpp
+/home/kpit/Desktop/cmake_tutorials/module2/addition.h
+
+/home/kpit/Desktop/cmake_tutorials/module2/division.h
+
+/home/kpit/Desktop/cmake_tutorials/module2/main.cpp
+iostream
+-
+addition.h
+/home/kpit/Desktop/cmake_tutorials/module2/addition.h
+division.h
+/home/kpit/Desktop/cmake_tutorials/module2/division.h
+print_result.h
+/home/kpit/Desktop/cmake_tutorials/module2/print_result.h
+
+/home/kpit/Desktop/cmake_tutorials/module2/print_result.h
+iostream
+-
 

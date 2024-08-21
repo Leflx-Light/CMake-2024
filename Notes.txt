@@ -29,7 +29,18 @@ Command:
        To remove content of any folder : to go to that folder : then run :  --->  rm -rf *
        
  
+ -----------------------------------------------------------------------------
+ Targets:
+    1. libraries 
+    2. Executables
+    
+    libraries and executables jointly called Targets in CMake.
+ 
+ 
+ 
+ 
  CMake Commands: 
+ ---------------------------------------------------------------------------
  1. add_executable(<Exec Name> <Source Files>)
  
  
@@ -41,16 +52,190 @@ division.cpp
 print_result.cpp  
 )
 
-
-
+----------------------------------------------------------------------------
 
 Note: C++ Project has some sense of hierarchy structure so that we can tell which file depending on which file.
 For our case: main.cpp file depends on three files --> addition.cpp , division.cpp and print_result.cpp
 
 
+-----------------------------------------------------------------------------
+2. add_library(<library_name> <source_files>)
+
+Example: 
+add_library(my_math
+addition.cpp 
+division.cpp 
+)
+
+add_library(my_print
+print_result.cpp
+)
+
+------------------------------------------------------------------------------
+3. target_link_libraries(<executable> <lib1> <lib2>)
+
+Example:
+target_link_libraries(calculator my_math my_print)
+
+-----------------------------------------------------------------------------
+
+
+Proper Sample CMakeLists.txt File:Till Now
+
+cmake_minimum_required(VERSION 3.0.0)
+project(Calculator VERSION 1.0.0)
+
+add_library(my_math
+addition.cpp 
+division.cpp 
+)
+
+add_library(my_print
+print_result.cpp
+)
+
+add_executable(calculator
+main.cpp
+)
+
+target_link_libraries(calculator my_math my_print)
+
+---------------------------------------------------------------------------------
+
+Static Library:
+A static library is a collection of object files that are linked into your program during the linking phase of compilation. This means that the code from the library is copied directly into the executable file at compile time, rather than being loaded at runtime. Here are some key points about static libraries:
+
+    1. Self-contained Executable: The final executable contains all the code it needs, so it doesn’t rely on external libraries at runtime.
+    2. No Dependency Issues: Since all necessary code is included in the executable, you avoid issues related to missing or incompatible library versions.
+    3. Larger Executable Size: The executable file is typically larger because it includes all the library code.
+    4. Faster Execution: There is no need to load external libraries at runtime, which can make the program start faster.
+
+In your case, libmy_math.a is a static library that includes the compiled object files from addition.cpp and division.cpp
+
+---------------------------------------------------------------------------------
+
+ Targets:
+    1. libraries 
+    2. Executables
+    
+    libraries and executables jointly called Targets in CMake.
+ 
+ 
+ Properties of Targets:
+ 
+ target A
+    ^
+    |
+    |
+ target B (Dependency of target A) [ target A depends on target B ]
+ 
+ This means that if Target B's dependency of target A, 
+ then target A can only be build after Target B is build successfully here.
+ 
+ -----------------------------------------------------------------------------------
+ 
+ Question : Can we add more than 1 executable in CMakeLists.txt ?
+ Answer : Yes
+ 
+ 
+ Sample Code: 
+ cmake_minimum_required(VERSION 3.0.0)
+project(Calculator VERSION 1.0.0)
+
+add_library(my_math
+addition.cpp 
+division.cpp 
+)
+
+add_library(my_print
+print_result.cpp
+)
+
+add_executable(calculator
+main.cpp
+)
+
+add_executable(duplicate_calculator
+main.cpp
+)
+
+target_link_libraries(calculator my_math my_print)
+target_link_libraries(duplicate_calculator my_math my_print)
+
+-----------------------------------------------------------------------------------------------
+
+Question : Can we have 2 targets of the same name?
+Answer : No
 
 
 
 
 
+
+
+
+ 
+ Sample Code : Following code throws an error while running cmake .. command 
+ 
+ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ cmake_minimum_required(VERSION 3.0.0)
+project(Calculator VERSION 1.0.0)
+
+add_library(my_math
+addition.cpp 
+division.cpp 
+)
+
+add_library(my_print
+print_result.cpp
+)
+
+add_executable(calculator
+main.cpp
+)
+
+add_executable(calculator
+main.cpp
+)
+
+target_link_libraries(calculator my_math my_print)
+target_link_libraries(calculator my_math my_print)
+ 
+ 
+Error: 
+CMake Error at CMakeLists.txt:17 (add_executable):
+  add_executable cannot create target "calculator" because another target
+  with the same name already exists.  The existing target is an executable
+  created in source directory "/home/kpit/Desktop/cmake_tutorials/module2".
+  See documentation for policy CMP0002 for more details.
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+Question : Do we have the target files saved in our computer.
+Answer:  Yes
+ 
+ The executables and libraries are saved inside build folder.
+ 
+ -------------------------------------------------------------------------
+ 
+ Question 1:
+
+Consider a project having 3 targets A, B and C such that  the target C is a dependency of target A and target C depends upon target B. Which one of the following should be appropriate CMake command for proper linking of these targets?
+
+Answer: target_link_libraries(C PUBLIC B)
+        target_link_libraries(A PUBLIC C)
+        
+-------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
                                

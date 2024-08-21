@@ -230,12 +230,6 @@ Calculator_BINARY_DIR:STATIC=/home/kpit/Desktop/cmake_tutorials/module2/build
 //Value Computed by CMake
 Calculator_SOURCE_DIR:STATIC=/home/kpit/Desktop/cmake_tutorials/module2
 
-//Value Computed by CMake
-Project_BINARY_DIR:STATIC=/home/kpit/Desktop/cmake_tutorials/module2/build
-
-//Value Computed by CMake
-Project_SOURCE_DIR:STATIC=/home/kpit/Desktop/cmake_tutorials/module2
-
 
 ########################
 # INTERNAL cache entries
