@@ -8,3 +8,18 @@ For checking g++ is installed or not ?
         g++ --version
         
         
+Recommended Way : Write function declarations in different header files.
+1. addition.h
+2. division.h
+3. print_result.h
+
+
+Build Systems:
+1. Make
+2. Ninja
+3. Ant 
+4. Gradle
+
+these build systems are softwares for automating the source code compilation and linking process. 
+
+CMake: The CMake tool is capable of writing the makefiles for us.
