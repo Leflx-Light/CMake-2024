@@ -23,3 +23,34 @@ Build Systems:
 these build systems are softwares for automating the source code compilation and linking process. 
 
 CMake: The CMake tool is capable of writing the makefiles for us.
+
+
+Command: 
+       To remove content of any folder : to go to that folder : then run :  --->  rm -rf *
+       
+ 
+ CMake Commands: 
+ 1. add_executable(<Exec Name> <Source Files>)
+ 
+ 
+ Example: 
+add_executable(calculator
+main.cpp
+addition.cpp
+division.cpp
+print_result.cpp  
+)
+
+
+
+
+Note: C++ Project has some sense of hierarchy structure so that we can tell which file depending on which file.
+For our case: main.cpp file depends on three files --> addition.cpp , division.cpp and print_result.cpp
+
+
+
+
+
+
+
+                               

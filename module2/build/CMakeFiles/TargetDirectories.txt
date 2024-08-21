@@ -1,0 +1,3 @@
+/home/kpit/Desktop/cmake_tutorials/module2/build/CMakeFiles/rebuild_cache.dir
+/home/kpit/Desktop/cmake_tutorials/module2/build/CMakeFiles/edit_cache.dir
+/home/kpit/Desktop/cmake_tutorials/module2/build/CMakeFiles/calculator.dir
