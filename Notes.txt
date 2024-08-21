@@ -1,0 +1,10 @@
+CMake:
+
+command: 
+        lsb_release -a    -- give details of your environment that you are using.
+        
+For checking g++ is installed or not ?
+        g++ -v
+        g++ --version
+        
+        
